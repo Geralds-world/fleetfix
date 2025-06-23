@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FleetFix Login</title>
+    <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1485575301924-6891ef935dcd?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D');
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            background-color: #1a1a1ad3;
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(159, 158, 158, 0.297);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4CAF50;
+        }
+
+        .login-container label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 15px;
+            background-color: #333;
+            color: #eee;
+            font-size: 1rem;
+        }
+
+        .login-container button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .signup-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>FleetFix Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Username:</label>
+            <input type="text" name="username" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? <a href="{% url 'register' %}">Sign up here</a>
+        </div>
+    </div>
+</body>
+</html>

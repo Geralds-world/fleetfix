@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - FleetFix</title>
+    <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
+    <style>
+        body {
+            background-image: url('https://www.volvotrucks.com/content/dam/volvo-trucks/markets/master/p2764/home/market-landing-transport-solutions-mirrored-in-water.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+
+        .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a1e34e8;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 4rem;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.dashboard-header .dashboard-date {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+
+        .dashboard-container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #0a2b4eaa;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .dashboard-actions .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: #0055aa;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #003d80;
+        }
+
+        .search-bar input {
+            padding: 0.6rem;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .customer-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .customer-card h3 {
+            margin-top: 0;
+            color: #0055aa;
+        }
+
+        .job-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        .job-list li {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .job-list li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .job-list li a:hover {
+            color: #007bff;
+        }
+
+        .no-jobs {
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+    <script>
+        function filterJobs() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const cards = document.querySelectorAll(".customer-card");
+
+            cards.forEach(card => {
+                const jobs = card.querySelectorAll("li");
+                let hasMatch = false;
+
+                jobs.forEach(job => {
+                    const text = job.textContent.toLowerCase();
+                    if (text.includes(input)) {
+                        job.style.display = "";
+                        hasMatch = true;
+                    } else {
+                        job.style.display = "none";
+                    }
+                });
+
+                card.style.display = hasMatch ? "" : "none";
+            });
+        }
+    </script>
+
+    <body>
+    <div class="dashboard-header">
+    <h1>FleetFix Dashboard</h1>
+    <p class="dashboard-date">{{ today }}</p>
+</div>
+</head>
+
+    <div class="dashboard-container">
+        <h2>All Customers & Jobs</h2>
+
+        <div class="dashboard-actions">
+            <div class="buttons">
+                <a href="{% url 'add_customer' %}" class="btn">➕ Add Customer</a>
+                <a href="{% url 'add_job' %}" class="btn">➕ Add Job</a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" onkeyup="filterJobs()" placeholder="Search license plate...">
+            </div>
+        </div>
+
+        {% for customer in customers %}
+            <div class="customer-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>{{ customer.name }}</h3>
+        <form method="POST" action="{% url 'delete_customer' customer.id %}" onsubmit="return confirm('Are you sure you want to delete this customer and all jobs?')">
+            {% csrf_token %}
+            <button type="submit" style="
+                background: #0055aa;
+                border: none;
+                color: white;
+                font-size: 12px;
+                cursor: pointer;
+                font-weight: bold;
+            " title="Delete Customer">Delete Customer</button>
+        </form>
+    </div>
+<ul class="job-list">
+    {% for job in customer.job_set.all %}
+        <li style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="{% url 'view_job' job.id %}" style="flex-grow: 1; text-decoration: none; color: #333;">
+                {{ job.license_plate }} — {{ job.service_date }}
+            </a>
+            <form action="{% url 'delete_job' job.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this job?')">
+                {% csrf_token %}
+                <button type="submit" style=" 
+                    background: #cc154c;
+                    color: white;
+                    border: none;
+                    padding: 4px 10px;
+                    border-radius: 6px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    font-size: 12px;
+                ">Delete</button>
+            </form>
+        </li>
+    {% empty %}
+        <li class="no-jobs">No jobs yet for this customer.</li>
+    {% endfor %}
+</ul>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

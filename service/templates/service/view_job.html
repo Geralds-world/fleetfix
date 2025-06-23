@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job - {{ job.license_plate }}</title>
+    <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <a class="back-btn" href="{% url 'dashboard' %}">← Back to All Jobs</a>
+    <br>
+    <a class="back-btn" href="{% url 'download_pdf' job.id %}" target="_blank">⬇️ Download as PDF</a>
+    <h2>Job Details for {{ job.license_plate }}</h2>
+    <p><strong>Customer:</strong> {{ job.customer.name }}</p>
+    <p><strong>Service Date:</strong> {{ job.service_date }}</p>
+    <p><strong>Kilometers:</strong> {{ job.kilometers }}</p>
+
+    {% if high_risk_markers %}
+        <h3>⚠️ High Risk Items</h3>
+        {% for marker in high_risk_markers %}
+            <div class="marker-block high-risk">
+                <p><strong>{{ marker.number }}.</strong> {{ marker.description }}</p>
+                {% if marker.image %}
+                    <img src="{{ marker.image.url }}" alt="Marker image">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if normal_markers %}
+        <h3>🛠 Normal Items</h3>
+        {% for marker in normal_markers %}
+            <div class="marker-block">
+                <p><strong>{{ marker.number }}.</strong> {{ marker.description }}</p>
+                {% if marker.image %}
+                    <img src="{{ marker.image.url }}" alt="Marker image">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>

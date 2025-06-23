@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            margin: 40px;
+            color: #383c3d;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4580bf;
+            font-size: 20px;
+            text-transform: uppercase !important;
+        }
+        .section-title {
+            background-color: #f0f0f0;
+            padding: 6px 10px;
+            font-size: 15px;
+            border-left: 5px solid #007bff;
+            margin-top: 30px;
+        }
+        .marker {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .marker strong {
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        .marker img {
+            height: 180px;
+            width: auto;
+            margin-top: 12px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+        .meta {
+            margin-bottom: 10px;
+        }
+        .meta p {
+            margin: 4px 0;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Job Report</h2>
+    <div class="meta">
+        <p><strong>License Plate:</strong>{{ job.license_plate }} </p>
+        <p><strong>Service Done On:</strong>{{ job.service_date }} </p>
+        <p><strong>Kilometers:</strong>{{ job.kilometers }} km </p>
+    </div>
+
+    {% if high_risk_markers %}
+        <div class="section-title">- High Risk Issues</div>
+        {% for marker in high_risk_markers %}
+        <div class="marker">
+            <strong>{{ marker.number }}.</strong> {{ marker.description }}<br>
+            <br>
+            {% if marker.image %}
+                <img src="{{ marker.image.path }}" alt="Marker Image">
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if normal_markers %}
+        <div class="section-title">- Other Issues</div>
+        {% for marker in normal_markers %}
+        <div class="marker">
+            <strong>{{ marker.number }}.</strong> {{ marker.description }}<br>
+            <br>
+            {% if marker.image %}
+                <img src="{{ marker.image.path }}" alt="Marker Image">
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

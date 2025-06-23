@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FleetFix | Register</title>
+    <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1485575301924-6891ef935dcd?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJ1Y2t8ZW58MHx8MHx8fDA%3D');
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background-color: #1a1a1ad3;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(159, 158, 158, 0.297);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4CAF50;
+        }
+
+        .register-container label {
+            font-weight: 600;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .register-container input {
+            width: 95%;
+            padding: 12px;
+            background: #fcfcfc;
+            border: none;
+            border-radius: 15px;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .register-container button {
+            margin-top: 25px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-container button:hover {
+            background-color: #45a049;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .errorlist {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create an Account</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Log in</a>
+        </div>
+    </div>
+</body>
+</html>

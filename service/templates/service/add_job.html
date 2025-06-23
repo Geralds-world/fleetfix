@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Job</title>
+    <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e9ded5, #f6ede5);
+            color: #eee;
+            margin: 0;
+        }
+       
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        .form-container label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: 600;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container input[type="date"],
+        .form-container select,
+        .form-container textarea,
+        .form-container input[type="file"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: #eee;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: background 0.3s ease;
+        }
+        .form-container input[type="text"]:focus,
+        .form-container input[type="number"]:focus,
+        .form-container input[type="date"]:focus,
+        .form-container select:focus,
+        .form-container textarea:focus,
+        .form-container input[type="file"]:focus {
+            background: #444;
+            outline: none;
+        }
+        .form-container textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        .form-container input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            vertical-align: middle;
+        }
+        #marker-container h4 {
+            margin-top: 25px;
+            color: #7acc7a;
+            border-bottom: 1px solid #4CAF50;
+            padding-bottom: 4px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            justify-content: flex-start;
+            margin-top: 4px;
+        }
+        .checkbox-row input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+        .checkbox-row label {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Job</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Customer:</label>
+            <select name="customer_id" required>
+                <option value="">-- Select Customer --</option>
+                {% for customer in customers %}
+                    <option value="{{ customer.id }}">{{ customer.name }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label>License Plate:</label>
+            <input type="text" name="license_plate" required><br><br>
+
+            <label>Service Date:</label>
+            <input type="date" name="service_date" value="{{ today }}"><br><br>
+
+            <label>Kilometers:</label>
+            <input type="number" name="kilometers" required><br><br>
+
+            <div id="marker-container">
+                {% for i in "12345" %}
+                <h4>{{ forloop.counter }} .</h4>
+                <label>Description:</label>
+                <textarea name="desc_{{ forloop.counter }}"></textarea><br>
+                <label>Image (📷 or Upload):</label>
+                <input type="file" name="image_{{ forloop.counter }}" accept="image/*" capture="environment"><br>
+                <div class="checkbox-row">
+                    <input type="checkbox" name="high_risk_{{ forloop.counter }}" id="high_risk_{{ forloop.counter }}">
+                    <label for="high_risk_{{ forloop.counter }}">High Risk</label>
+                </div>
+                <br><br><br>
+                {% endfor %}
+            </div>
+
+            <input type="hidden" id="marker_count" name="marker_count" value="5">
+            <button type="button" onclick="addMarker()">Add More items ?</button><br><br>
+            <button type="submit">Save Job</button>
+        </form>
+    </div>
+
+    <script>
+        let markerCount = 5;
+        function addMarker() {
+            markerCount++;
+            const container = document.getElementById('marker-container');
+
+            const markerHTML = `
+                <h4>${markerCount} .</h4>
+                <label>Description:</label>
+                <textarea name="desc_${markerCount}"></textarea><br>
+                <label>Image (📷 or Upload):</label>
+                <input type="file" name="image_${markerCount}" accept="image/*" capture="environment"><br>
+                <div class="checkbox-row">
+                    <input type="checkbox" name="high_risk_${markerCount}" id="high_risk_${markerCount}">
+                    <label for="high_risk_${markerCount}">High Risk</label>
+                </div><br><br><br>
+            `;
+
+            container.insertAdjacentHTML('beforeend', markerHTML);
+            document.getElementById('marker_count').value = markerCount;
+        }
+    </script>
+</body>
+</html>
