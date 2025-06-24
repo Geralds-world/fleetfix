@@ -171,6 +171,9 @@
     }
 
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
 
     .dashboard-header {
         flex-direction: column;
@@ -179,6 +182,8 @@
         gap: 10px;
         width: 100%;
         margin-bottom: 20px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
     }
 
     .dashboard-header h1 {
@@ -192,7 +197,6 @@
 
     .dashboard-container {
         padding: 10px;
-        margin: 10px;
         width: 100%;
         padding: 1rem;
         border-radius: 15px;
@@ -213,7 +217,7 @@
     }
 
     .btn {
-        width: 100%;
+        width: 80%;
         font-size: 1.1rem;
         padding: 1rem;
         border-radius: 10px;
@@ -225,7 +229,7 @@
         font-size: 1.1rem;
         padding: 0.9rem;
         border-radius: 10px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     h2 {
@@ -251,35 +255,39 @@
         border-radius: 8px;
     }
 
-    .job-list li {
-        flex-direction: row; /* 👈 Keep items in a row */
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 1rem 0;
-        gap: 0.8rem;
-    }
+.job-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    gap: 1rem;
+    flex-wrap: nowrap; /* 👈 Prevent wrap */
+}
 
-    .job-list li a {
-        flex-grow: 1;
-    }
+.job-list li a {
+    font-size: 1.1rem;
+    flex-grow: 1; /* 👈 Allow it to take remaining space */
+    width: auto;
+}
 
-    .job-list form {
-        flex-shrink: 0;
-    }
+.job-list form {
+    flex-shrink: 0; /* 👈 Prevent shrinking */
+}
+
 
     .job-list li a {
         font-size: 1.1rem;
         width: 100%;
     }
 
-    .job-list form button {
-        font-size: 1rem;
-        padding: 10px 16px;
-        border-radius: 8px;
-        width: 100%;
-    }
+.job-list form button {
+    font-size: 1rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    width: auto;
+}
 
     .no-jobs {
         font-size: 1rem;
