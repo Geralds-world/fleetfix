@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FleetFix Login</title>
     <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
     <style>
@@ -18,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
 }
 
@@ -27,9 +28,10 @@ body {
     padding: 45px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(159, 158, 158, 0.297);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     box-sizing: border-box;
+    transform: scale(1);
 }
 
 .login-container h2 {
@@ -95,15 +97,17 @@ body {
     .login-container {
         padding: 25px 20px;
         border-radius: 12px;
+        width: 95%;
+        max-width: none;
     }
 
     .login-container h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .login-container input,
     .login-container button {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .signup-link {

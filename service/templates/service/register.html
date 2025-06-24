@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FleetFix | Register</title>
     <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
     <style>
@@ -13,12 +14,12 @@ body {
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #eee;
+    margin: 0;
+    padding: 0;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
     overflow-x: hidden;
 }
 
@@ -27,7 +28,7 @@ body {
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(159, 158, 158, 0.297);
-    width: 100%;
+    width: 90%;
     max-width: 450px;
     box-sizing: border-box;
 }
@@ -36,6 +37,7 @@ body {
     text-align: center;
     margin-bottom: 30px;
     color: #4CAF50;
+    font-size: 1.8rem;
 }
 
 .register-container label {
@@ -98,22 +100,26 @@ body {
     padding-left: 0;
 }
 
-/* ✅ Mobile responsiveness */
+/* ✅ Mobile improvements */
 @media (max-width: 500px) {
     .register-container {
-        padding: 30px 20px;
+        padding: 25px 20px;
+        border-radius: 12px;
+        width: 95%;
+        max-width: none;
     }
 
     .register-container h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
-    .register-container input {
-        font-size: 0.95rem;
-    }
-
+    .register-container input,
     .register-container button {
-        font-size: 0.95rem;
+        font-size: 1rem;
+    }
+
+    .login-link {
+        font-size: 0.85rem;
     }
 }
 
