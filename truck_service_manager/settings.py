@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-5nq=v4vwvv3oo^t4m!p$*pb#3z&d$!x(ihhnoya1-9x69&@-sk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fleetfix.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
