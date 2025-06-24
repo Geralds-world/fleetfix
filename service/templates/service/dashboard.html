@@ -6,189 +6,219 @@
     <title>Dashboard - FleetFix</title>
     <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
     <style>
-body {
-    background-image: url('https://www.volvotrucks.com/content/dam/volvo-trucks/markets/master/p2764/home/market-landing-transport-solutions-mirrored-in-water.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0a1e34e8;
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 4rem;
-    flex-wrap: wrap;
-}
-
-.dashboard-header h1 {
-    margin: 0;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-.dashboard-header .dashboard-date {
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.dashboard-container {
-    max-width: 1000px;
-    margin: auto;
-    background-color: #0a2b4eaa;
-    border-radius: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-h2 {
-    color: #ffffff;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-    text-align: center;
-}
-
-.dashboard-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.dashboard-actions .buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 0.6rem 1.2rem;
-    background: #0055aa;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background 0.3s ease;
-    text-align: center;
-    white-space: nowrap;
-}
-
-.btn:hover {
-    background: #003d80;
-}
-
-.search-bar input {
-    padding: 0.6rem;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 100%;
-}
-
-.customer-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.customer-card h3 {
-    margin-top: 0;
-    color: #0055aa;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.job-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 0 0;
-}
-
-.job-list li {
-    padding: 0.8rem;
-    border-bottom: 1px solid #eaeaea;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.job-list li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    flex-grow: 1;
-}
-
-.job-list li a:hover {
-    color: #007bff;
-}
-
-.no-jobs {
-    font-style: italic;
-    color: #999;
-}
-
-/* ✅ Mobile Responsiveness */
-@media (max-width: 768px) {
-    .dashboard-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .dashboard-actions .buttons {
-        width: 100%;
-        justify-content: space-between;
+    body {
+        background-image: url('https://www.volvotrucks.com/content/dam/volvo-trucks/markets/master/p2764/home/market-landing-transport-solutions-mirrored-in-water.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        min-height: 100vh;
     }
 
     .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0a1e34e8;
+        color: white;
+        border-radius: 0;
+        padding: 16px;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .dashboard-header h1 {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0;
     }
 
     .dashboard-header .dashboard-date {
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
+        font-size: 1rem;
     }
 
     .dashboard-container {
-        padding: 16px;
-        border-radius: 10px;
+        width: 95%;
+        max-width: 1200px;
+        margin: 2rem auto;
+        background-color: #0a2b4ed0;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        color: white;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-actions .buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.2rem;
+        background: #0055aa;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+        text-align: center;
+        white-space: nowrap;
+        border: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #003d80;
+    }
+
+    .search-bar input {
+        padding: 0.75rem;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    .customer-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        color: #333;
+    }
+
+    .customer-card h3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2rem;
+        color: #0055aa;
+        margin: 0;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .job-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0 0;
     }
 
     .job-list li {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding: 0.8rem 0;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .job-list li a {
-        width: 100%;
+        color: #333;
+        font-weight: 500;
+        text-decoration: none;
+        flex-grow: 1;
     }
-}
-    </style>
+
+    .job-list li a:hover {
+        color: #007bff;
+    }
+
+    .no-jobs {
+        font-style: italic;
+        color: #999;
+    }
+
+    .job-list form button,
+    .customer-card form button {
+        background-color: #cc154c;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 12px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .customer-card form button {
+        background-color: #0055aa;
+        font-size: 12px;
+    }
+
+    /* ✅ Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .dashboard-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 1.6rem;
+        }
+
+        .dashboard-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .dashboard-actions .buttons {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .customer-card h3 {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .job-list li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .job-list li a {
+            width: 100%;
+        }
+
+        .job-list form {
+            width: 100%;
+        }
+
+        .dashboard-container {
+            width: 95%;
+            padding: 1rem;
+        }
+    }
+</style>
     <script>
         function filterJobs() {
             const input = document.getElementById("searchInput").value.toLowerCase();
