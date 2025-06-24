@@ -192,6 +192,7 @@
 
     .dashboard-container {
         padding: 10px;
+        margin: 10px;
         width: 100%;
         padding: 1rem;
         border-radius: 15px;
@@ -224,6 +225,7 @@
         font-size: 1.1rem;
         padding: 0.9rem;
         border-radius: 10px;
+        margin-bottom: 15px;
     }
 
     h2 {
@@ -250,13 +252,21 @@
     }
 
     .job-list li {
-        flex-direction: row;        
-        align-items: center;
+        flex-direction: row; /* 👈 Keep items in a row */
         justify-content: space-between;
+        align-items: center;
         flex-wrap: wrap;
         gap: 10px;
         padding: 1rem 0;
         gap: 0.8rem;
+    }
+
+    .job-list li a {
+        flex-grow: 1;
+    }
+
+    .job-list form {
+        flex-shrink: 0;
     }
 
     .job-list li a {
