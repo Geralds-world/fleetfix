@@ -6,18 +6,18 @@
     <title>Dashboard - FleetFix</title>
     <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
     <style>
-        body {
-            background-image: url('https://www.volvotrucks.com/content/dam/volvo-trucks/markets/master/p2764/home/market-landing-transport-solutions-mirrored-in-water.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-        }
+body {
+    background-image: url('https://www.volvotrucks.com/content/dam/volvo-trucks/markets/master/p2764/home/market-landing-transport-solutions-mirrored-in-water.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    overflow-x: hidden;
+}
 
-
-        .dashboard-header {
+.dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,6 +26,7 @@
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 4rem;
+    flex-wrap: wrap;
 }
 
 .dashboard-header h1 {
@@ -39,94 +40,154 @@
     font-weight: 400;
 }
 
+.dashboard-container {
+    max-width: 1000px;
+    margin: auto;
+    background-color: #0a2b4eaa;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
+h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+}
 
-        .dashboard-container {
-            max-width: 1000px;
-            margin: auto;
-            background-color: #0a2b4eaa;
-            border-radius: 20px;
-            padding: 20px;
-        }
+.dashboard-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 
-        h2 {
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
+.dashboard-actions .buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
 
-        .dashboard-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+.btn {
+    padding: 0.6rem 1.2rem;
+    background: #0055aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+}
 
-        .dashboard-actions .buttons {
-            display: flex;
-            gap: 1rem;
-        }
+.btn:hover {
+    background: #003d80;
+}
 
-        .btn {
-            padding: 0.6rem 1.2rem;
-            background: #0055aa;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
+.search-bar input {
+    padding: 0.6rem;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 100%;
+}
 
-        .btn:hover {
-            background: #003d80;
-        }
+.customer-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
 
-        .search-bar input {
-            padding: 0.6rem;
-            width: 250px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+.customer-card h3 {
+    margin-top: 0;
+    color: #0055aa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .customer-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
+.job-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
 
-        .customer-card h3 {
-            margin-top: 0;
-            color: #0055aa;
-        }
+.job-list li {
+    padding: 0.8rem;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-        .job-list {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-        }
+.job-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    flex-grow: 1;
+}
 
-        .job-list li {
-            padding: 0.8rem;
-            border-bottom: 1px solid #eaeaea;
-        }
+.job-list li a:hover {
+    color: #007bff;
+}
 
-        .job-list li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
+.no-jobs {
+    font-style: italic;
+    color: #999;
+}
 
-        .job-list li a:hover {
-            color: #007bff;
-        }
+/* ✅ Mobile Responsiveness */
+@media (max-width: 768px) {
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-        .no-jobs {
-            font-style: italic;
-            color: #999;
-        }
+    .dashboard-actions .buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-header .dashboard-date {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dashboard-container {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .job-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .job-list li a {
+        width: 100%;
+    }
+}
     </style>
     <script>
         function filterJobs() {

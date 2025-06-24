@@ -6,66 +6,89 @@
     <title>Add Customer</title>
     <link rel="stylesheet" href="{% static 'service/css/style.css' %}">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e9ded5, #f6ede5);
-            color: #eee;
-            margin: 0;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e9ded5, #f6ede5);
+    color: #eee;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+}
 
 .form-container {
     max-width: 500px;
+    width: 100%;
     padding: 30px;
     background: #1a1a1a;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
 }
 
-        h2 {
-            text-align: center;
-            color: #4CAF50;
-            margin-bottom: 25px;
-        }
+h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 25px;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"]  {
-            width: 95%;
-            padding: 12px;
-            margin: 15px 0;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
-            color: #eee;
-            font-size: 1rem;
-        }
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #eee;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus {
-            outline: none;
-            background-color: #3a3a3a;
-        }
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    background-color: #3a3a3a;
+}
 
-        button[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
 
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* ✅ Optional for very small devices */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    input, button {
+        font-size: 0.95rem;
+    }
+}
+
     </style>
 </head>
 <body>
